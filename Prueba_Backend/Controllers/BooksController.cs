@@ -17,7 +17,8 @@ namespace Prueba_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class BooksController : ControllerBase// hot
+
     {
         [HttpGet]
         public ActionResult<Books> Get([FromQuery] int BookId)
@@ -59,6 +60,7 @@ namespace Prueba_Backend.Controllers
             proceso.Actualizar(Libro);
 
             return Ok();
+
         }
 
         [HttpDelete]
