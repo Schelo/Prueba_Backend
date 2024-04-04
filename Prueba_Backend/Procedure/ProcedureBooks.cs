@@ -7,6 +7,7 @@
  * ----------------------------------------------------------------------------------------------------------
  * xx-xx-xxxx       xxxxx              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  */
+using System.Data;
 using System.Data.SqlClient;
 using Prueba_Backend.Modelo;
 
@@ -14,34 +15,38 @@ namespace Prueba_Backend.Procedure
 {
     public class ProcedureBooks
     {
-        SqlConnection conn = new SqlConnection("Server=(localdb)\\localDB01;Database=Librodb;User Id=usuario;Password=password;");
-        public void Crear(Books  Libro) 
+        SqlConnection conn = new SqlConnection("Data source=DEVCL-JOSEFA;initial catalog=Prueba;persist security info=True;user id=aspnet;password=123;");
+        public bool Crear(Books Libro) //[Funcional]
         {
+            bool respuesta = false;
             // 
-            string procedure = "sp_InsertBook";
+            string procedure = "[dbo].[sp_InsertBook]";
             SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@title", Libro.Title);
-            command.Parameters.AddWithValue("@auth",Libro.Author);
-            command.Parameters.AddWithValue("@genre",Libro.Genre);
-            command.Parameters.AddWithValue("@date",Libro.PublishDate);
+            command.Parameters.AddWithValue("@auth", Libro.Author);
+            command.Parameters.AddWithValue("@genre", Libro.Genre);
+            command.Parameters.AddWithValue("@date", Libro.PublishDate);
 
             try
             {
                 conn.Open();
                 command.ExecuteNonQuery();
                 conn.Close();
+                respuesta = true;
+
             }
             catch
             {
                 // Control de errores.
             }
+            return respuesta;
         }
-        public void Actualizar(Books Libro)
+        public void Actualizar(Books Libro) //[]
         {
             // 
-            string procedure = "sp_UpdateBook";
+            string procedure = "[dbo].[sp_UpdateBook]";
             SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -62,10 +67,10 @@ namespace Prueba_Backend.Procedure
                 // Control de errores.
             }
         }
-        public void Eliminar(int BookId)
+        public void Eliminar(int BookId)  //[Funciona]
         {
             //
-            string procedure = "sp_DeleteBook";
+            string procedure = "[dbo].[sp_DeleteBook]";
             SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -82,59 +87,72 @@ namespace Prueba_Backend.Procedure
                 // Control de errores.
             }
         }
-        public Books SeleccionarLibro(int BookId)
+        public Books SeleccionarLibro(int BookId) //[ahora no funciona T-T]
         {
             //
-            string sql = "select BookId, Title, Author, Genre, PublishDate from Books where bid = " + BookId.ToString() + " ";
-            SqlCommand command = new SqlCommand(sql, conn);
+            string procedure = "[dbo].[sp_GetBookById]";
+            SqlCommand command = new SqlCommand(procedure, conn);
+            DataTable dt = new DataTable();
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
             Books Libro = new Books();
+            command.Parameters.AddWithValue("@bid", BookId);
             try
             {
+               
                 conn.Open();
-                SqlDataReader datos = command.ExecuteReader();
+                var da = new SqlDataAdapter(command);
+                da.Fill(dt);
+
+                //if (dt.Rows.Count == 0)
+                //{
+                //    return new List<GetBooks>();
+                //}
+                Libro.BookId = Int32.Parse(dt.Rows[0]["BookId"].ToString()); 
+                Libro.Title = dt.Rows[0]["Title"].ToString();
+                Libro.Author= dt.Rows[0]["Author"].ToString();
+                Libro.Genre = dt.Rows[0]["Genre"].ToString();
+                Libro.PublishDate = dt.Rows[0]["PublishDate"].ToString();
                 
-                while (datos.Read()) 
-                {
-                    Libro.BookId = int.Parse(datos["bid"].ToString()!);
-                    Libro.Title = datos["title"].ToString()!;
-                    Libro.Author = datos["auth"].ToString()!;
-                    Libro.Genre = datos["genre"].ToString()!;
-                    Libro.PublishDate = DateTime.Parse(datos["date"].ToString()!);
-                }
+
+
                 conn.Close();
             }
             catch (Exception ex)
             {
-                // Control de errores.
+                //Control de errores.
             }
             return Libro;
         }
-        public List<Books> SeleccionarTodos()
+        public List<GetBooks> SeleccionarTodos()  //[Funciona]
         {
             //
-            string sql = "select BookId, Title, Author, Genre, PublishDate from Books order by BookId ";
-            SqlCommand command = new SqlCommand(sql, conn);
+            string procedure = "[dbo].[sp_GetAllBooks]";
+            SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            List<Books> listaLibros = new List<Books>();
+            List<GetBooks> listaLibros = new List<GetBooks>();
+
+            DataTable dt = new DataTable();
+
             try
             {
                 conn.Open();
-                SqlDataReader datos = command.ExecuteReader();
+                var da = new SqlDataAdapter(command);
+                da.Fill(dt);
 
-                while (datos.Read())
+                if (dt.Rows.Count == 0)
                 {
-                    Books Libro = new Books();
-                    Libro.BookId = int.Parse(datos["bid"].ToString()!);
-                    Libro.Title = datos["title"].ToString()!;
-                    Libro.Author = datos["auth"].ToString()!;
-                    Libro.Genre = datos["genre"].ToString()!;
-                    Libro.PublishDate = DateTime.Parse(datos["date"].ToString()!);
-
-                    listaLibros.Add(Libro);
+                    return new List<GetBooks>();
                 }
+
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    var libro = new GetBooks(row);
+                    listaLibros.Add(libro);
+                }
+
                 conn.Close();
             }
             catch

@@ -36,3 +36,4 @@ C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\ne
 C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\Prueba_Backend.pdb
 C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\Prueba_Backend.genruntimeconfig.cache
 C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\ref\Prueba_Backend.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\Prueba_Backend.sourcelink.json

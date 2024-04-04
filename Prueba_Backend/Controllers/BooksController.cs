@@ -17,61 +17,81 @@ namespace Prueba_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase// hot
+    public class BooksController : ControllerBase
 
     {
+        [HttpPost("Create")]
+        public ActionResult Post(Books Libro) 
+        {
+            string salida = string.Empty;
+            if (Libro == null) return NotFound();
+
+            ProcedureBooks proceso = new ProcedureBooks();
+            var respuesta = proceso.Crear(Libro);
+
+            if (respuesta)
+            {
+                salida = "Se ha creado correctamente el libro " + Libro.Title;
+            }
+            
+            return Ok(salida);
+
+        }
+
         [HttpGet]
-        public ActionResult<Books> Get([FromQuery] int BookId)
+        [Route("GetOne/{BookId}")]
+        public ActionResult<Books> Get(int BookId)
         {
             if (BookId <= 0) return NotFound();
 
             ProcedureBooks proceso = new ProcedureBooks();
             Books Libro = proceso.SeleccionarLibro(BookId);
 
+            if (Libro == null) return NotFound();
+
             return Ok(Libro);
         }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<Books>> GetAll()
+        public ActionResult<List<GetBooks>> GetAll()
         {
             ProcedureBooks proceso = new ProcedureBooks();
-            List<Books> Libros = proceso.SeleccionarTodos();
+            List<GetBooks> Libros = proceso.SeleccionarTodos();
 
             return Ok(Libros);
+             
+            
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public ActionResult Put([FromQuery] Books Libro)
         {
-            if (Libro == null) return NotFound();
 
-            ProcedureBooks proceso = new ProcedureBooks();
-            proceso.Crear(Libro);
+            //bool resultado = VerificaToken(Libro.TokenUser, Libro.TokenPass);
 
-            return Ok();
-        }
-
-        [HttpPost]
-        public ActionResult Post(Books Libro)
-        {
+            //if (resultado)
+            //{
             if (Libro == null) return NotFound();
 
             ProcedureBooks proceso = new ProcedureBooks();
             proceso.Actualizar(Libro);
+            //}
 
-            return Ok();
-
+            return Ok(Libro);
         }
 
-        [HttpDelete]
-        public ActionResult Delete(int BookId) 
+        [HttpDelete("Delete")]
+        public ActionResult Delete(int BookId)
         {
+
             if (BookId <= 0) return NotFound();
 
             ProcedureBooks proceso = new ProcedureBooks();
             proceso.Eliminar(BookId);
 
-            return Ok();
+
+
+            return Ok("El libro con el codigo: "+ BookId +", fue eliminado correctamente.");
         }
     }
 }
