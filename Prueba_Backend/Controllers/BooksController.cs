@@ -9,13 +9,18 @@
  */
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
+
 using Prueba_Backend.Modelo;
 using Prueba_Backend.Procedure;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 namespace Prueba_Backend.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class BooksController : ControllerBase
 
@@ -64,7 +69,7 @@ namespace Prueba_Backend.Controllers
         }
 
         [HttpPut("Update")]
-        public ActionResult Put([FromQuery] Books Libro)
+        public ActionResult Put(Books Libro)
         {
 
             //bool resultado = VerificaToken(Libro.TokenUser, Libro.TokenPass);

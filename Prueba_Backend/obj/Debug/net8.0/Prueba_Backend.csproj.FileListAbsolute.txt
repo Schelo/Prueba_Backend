@@ -37,3 +37,11 @@ C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\ne
 C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\Prueba_Backend.genruntimeconfig.cache
 C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\ref\Prueba_Backend.dll
 C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\obj\Debug\net8.0\Prueba_Backend.sourcelink.json
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\marcelo.herquinigo\Proyectos\Prueba_Backend\Prueba_Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

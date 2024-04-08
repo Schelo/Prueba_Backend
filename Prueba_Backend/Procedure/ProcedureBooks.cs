@@ -104,18 +104,12 @@ namespace Prueba_Backend.Procedure
                 var da = new SqlDataAdapter(command);
                 da.Fill(dt);
 
-                //if (dt.Rows.Count == 0)
-                //{
-                //    return new List<GetBooks>();
-                //}
                 Libro.BookId = Int32.Parse(dt.Rows[0]["BookId"].ToString()); 
                 Libro.Title = dt.Rows[0]["Title"].ToString();
                 Libro.Author= dt.Rows[0]["Author"].ToString();
                 Libro.Genre = dt.Rows[0]["Genre"].ToString();
                 Libro.PublishDate = dt.Rows[0]["PublishDate"].ToString();
                 
-
-
                 conn.Close();
             }
             catch (Exception ex)
@@ -145,7 +139,6 @@ namespace Prueba_Backend.Procedure
                 {
                     return new List<GetBooks>();
                 }
-
 
                 foreach (DataRow row in dt.Rows)
                 {
