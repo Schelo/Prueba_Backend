@@ -1,4 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿/*
+ * Descripción: API de control de procedimientos(Auth).
+ * Autor: Marcelo
+ * Fecha creación: 03-04-2024
+ * Control de Cambios
+ * Fecha            Autor              Descricpión
+ * ----------------------------------------------------------------------------------------------------------
+ * xx-xx-xxxx       xxxxx              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ */
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Prueba_Backend.Modelo;

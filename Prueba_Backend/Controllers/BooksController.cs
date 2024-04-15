@@ -1,11 +1,12 @@
 ﻿/*
- * Descripción: API de control.
- * Autor: Marcelo
+ * Descripción: API de control de procedimientos(Libros).
+ * Autor: Marcelo H
  * Fecha creación: 02-04-2024
  * Control de Cambios
  * Fecha            Autor              Descricpión
  * ----------------------------------------------------------------------------------------------------------
  * xx-xx-xxxx       xxxxx              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ * 15-04-2024       Marcelo H          Leves correcciones en el codigo.
  */
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

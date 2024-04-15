@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "78cd6220-2269-4b69-ad15-069915e4fb0f",
+		"name": "API_Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34070455"
+	},
+	"item": [
+		{
+			"name": "Crear Libro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 0,\r\n  \"title\": \"El huracan de caca\",\r\n  \"author\": \"Juan churrete\",\r\n  \"genre\": \"Misterio\",\r\n  \"publishDate\": \"2122-04-21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7010/api/Books/Create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7010",
+					"path": [
+						"api",
+						"Books",
+						"Create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seleccionar Libro",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7010/api/Books/GetOne/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7010",
+					"path": [
+						"api",
+						"Books",
+						"GetOne",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seleccionar Todo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7010/api/Books/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7010",
+					"path": [
+						"api",
+						"Books",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Libro",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 9,\r\n  \"title\": \"El Reino de Hyperborea\",\r\n  \"author\": \"Clark Ashton Smith\",\r\n  \"genre\": \"Novela\",\r\n  \"publishDate\": \"2015-08-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7010/api/Books/Update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7010",
+					"path": [
+						"api",
+						"Books",
+						"Update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Libro",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7010/api/Books/Delete?BookId=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7010",
+					"path": [
+						"api",
+						"Books",
+						"Delete"
+					],
+					"query": [
+						{
+							"key": "BookId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auticacion Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"correo\": \"m@mail.com\",\r\n  \"clave\": \"123asd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7010/api/Autenticacion/Validar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7010",
+					"path": [
+						"api",
+						"Autenticacion",
+						"Validar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

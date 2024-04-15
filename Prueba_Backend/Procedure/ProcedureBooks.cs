@@ -1,11 +1,12 @@
 ﻿/*
  * Descripción: Procedimientos almacenados.
- * Autor: Marcelo
+ * Autor: Marcelo H
  * Fecha creación: 02-04-2024
  * Control de Cambios
  * Fecha            Autor              Descricpión
  * ----------------------------------------------------------------------------------------------------------
  * xx-xx-xxxx       xxxxx              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ * 15-04-2024       Marcelo H          Leves correcciones en el codigo.
  */
 using System.Data;
 using System.Data.SqlClient;
@@ -24,10 +25,10 @@ namespace Prueba_Backend.Procedure
             SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@title", Libro.Title);
-            command.Parameters.AddWithValue("@auth", Libro.Author);
-            command.Parameters.AddWithValue("@genre", Libro.Genre);
-            command.Parameters.AddWithValue("@date", Libro.PublishDate);
+            command.Parameters.AddWithValue("@Title", Libro.Title);
+            command.Parameters.AddWithValue("@Author", Libro.Author);
+            command.Parameters.AddWithValue("@Genre", Libro.Genre);
+            command.Parameters.AddWithValue("@Publish", Libro.PublishDate);
 
             try
             {
@@ -50,11 +51,11 @@ namespace Prueba_Backend.Procedure
             SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@bid", Libro.BookId);
-            command.Parameters.AddWithValue("@title", Libro.Title);
-            command.Parameters.AddWithValue("@auth", Libro.Author);
-            command.Parameters.AddWithValue("@genre", Libro.Genre);
-            command.Parameters.AddWithValue("@date", Libro.PublishDate);
+            command.Parameters.AddWithValue("@Lid", Libro.BookId);
+            command.Parameters.AddWithValue("@Title", Libro.Title);
+            command.Parameters.AddWithValue("@Author", Libro.Author);
+            command.Parameters.AddWithValue("@Genre", Libro.Genre);
+            command.Parameters.AddWithValue("@Publish", Libro.PublishDate);
 
             try
             {
@@ -74,7 +75,7 @@ namespace Prueba_Backend.Procedure
             SqlCommand command = new SqlCommand(procedure, conn);
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@bid", BookId);
+            command.Parameters.AddWithValue("@Lid", BookId);
 
             try
             {
@@ -96,7 +97,7 @@ namespace Prueba_Backend.Procedure
 
             command.CommandType = System.Data.CommandType.StoredProcedure;
             Books Libro = new Books();
-            command.Parameters.AddWithValue("@bid", BookId);
+            command.Parameters.AddWithValue("@Lid", BookId);
             try
             {
                
@@ -104,11 +105,11 @@ namespace Prueba_Backend.Procedure
                 var da = new SqlDataAdapter(command);
                 da.Fill(dt);
 
-                Libro.BookId = Int32.Parse(dt.Rows[0]["BookId"].ToString()); 
+                Libro.BookId = Int32.Parse(dt.Rows[0]["Id"].ToString()); 
                 Libro.Title = dt.Rows[0]["Title"].ToString();
                 Libro.Author= dt.Rows[0]["Author"].ToString();
                 Libro.Genre = dt.Rows[0]["Genre"].ToString();
-                Libro.PublishDate = dt.Rows[0]["PublishDate"].ToString();
+                Libro.PublishDate = Convert.ToDateTime(dt.Rows[0]["PublishDate"].ToString());
                 
                 conn.Close();
             }
@@ -145,6 +146,7 @@ namespace Prueba_Backend.Procedure
                     var libro = new GetBooks(row);
                     listaLibros.Add(libro);
                 }
+
 
                 conn.Close();
             }
